@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- jquery UI -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script>
+    <script type="text/javascript" src="/javascripts/article/simple-rating.js" defer></script>
+
+    <!-- Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12" defer></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/stylesheets/article/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"
+        defer></script>
+
+    <!-- summarnote needed start-->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js" defer></script>
+    <script src="/javascripts/article/summernote-zh-TW.js" defer></script>
+
+    <!-- main -->
+    <link rel="stylesheet" href="/stylesheets/navbar.css">
+    <link rel="stylesheet" href="/stylesheets/article/apublishPage.css">
+    <script type="" src="/javascripts/article/apublishPage.js" defer></script>
+
+    <!-- Google API -->
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&libraries=places&region=zh-TW&language=zh-TW"
+        defer></script>
+    <!-- 引入icon圖示的CDN -->
+    <link rel="stylesheet" href="/stylesheets/navbar.css">
+    <link href="https://file.myfontastic.com/qkBCMrD45o6CZLseFZhWN8/icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+
+
+    <title>發表文章</title>
+
+</head>
+
+<body>
+    <!-- navbar -->
+    <%- include('../navbar.ejs') %>
+    <!-- 所有內容都放在這個container裡 -->
+    <div id="textED" class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-11">
+                <form action="" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+                    <!-- 第一塊 白色部分 -->
+                    <div class="whitebg pt-4 pb-3 pl-5 pr-5">
+                        <!-- 文章發表icon+Title -->
+                        <div class="pubTitle d-flex">
+                            <!-- 文章的icon -->
+                            <img class="articleicon-r" src="/images/article-r.svg" alt="">
+                            <!-- 文章發表title -->
+                            <span class="pubTitle-r">文章發表</span>
+                        </div>
+                        <!-- 紅色分隔線 -->
+                        <div class="splitline col-6 mt-2"></div>
+                        <!-- 前三個input -->
+                        <!-- 標題input -->
+                        <div class="row mt-4">
+                            <label for="articleTitle" class="inputTitle">標題名稱 :</label>
+                            <input id="articleTitle" name="articleTitle" class="form-control col-6" maxlength="20"
+                                placeholder="標題名稱上限20字(必填)" type="text">
+                        </div>
+                        <!-- 時間input 不可輸入 注意有多包一層div控制width-->
+                        <div class="row mt-3">
+                            <label for="publishTime" class="inputTitle">文章時間 :</label>
+                            <div class="col-8 p-0 justify-content-start">
+                                <input id="publishTime" name="publishTime" class="form-control col-9" value=""
+                                    type="datetime-local">
+                            </div>
+                        </div>
+                        <!-- 標籤input -->
+                        <div class="row mt-3">
+                            <label for="articleTags" class="inputTitle">添加標籤 :</label>
+                            <input id="articleTags" name="articleTags" class="form-control col-8" placeholder="#加入標籤"
+                                type="text" value="#">
+                        </div>
+
+                    </div>
+
+                    <!-- 第二塊 灰色 -->
+                    <!-- 景點敘述 -->
+                    <div class=" graybg pt-4 pb-3 pl-5 pr-5">
+                        <div class="row mb-3">
+                            <label for="narrative" class="inputTitle">景點敘述 :</label>
+                            <textarea class="form-control col-8 narrative" name="narrative" id="narrative"
+                                maxlength="50" rows="2" placeholder="加入簡短的景點敘述吧!上限50字"></textarea>
+                        </div>
+
+                        <!-- 景點首圖-顯示在首頁、文章首頁card中的圖片 -->
+                        <div class="row mb-3">
+                            <label for="upimgFile" class="inputTitle">文章首圖 :</label>
+                            <input id="upimgFile" name="upimgFile" class="col-8" type="file"
+                                onchange="previewFile()"><br>
+                            <img class="ml-4 " id="imgFile" name="imgFile" height="150" src="" alt="">
+                        </div>
+                    </div>
+
+                    <!-- 第三塊 剩下的景點相關內容 -->
+                    <div class="whitebg pt-3 pb-3 pl-5 pr-5">
+
+                        <!-- 第一行 景點-->
+                        <div class="row mb-3">
+
+                            <!-- 景點Title -->
+                            <label for="siteName" class="inputTitle">景點名稱 :</label>
+
+                            <!-- 景點input -->
+                            <input id="siteName" name="siteName" class="form-control col-3 mr-4" maxlength="20"
+                                placeholder="名稱上限20字(必填)" type="search">
+
+                        </div>
+                        <!-- 第二行 國家 -->
+                        <div class="row mb-3">
+                            <!-- 國家Title -->
+                            <label for="siteCountry" class="inputTitle">所在國家 :</label>
+
+                            <!-- 國家input -->
+                            <input id="siteCountry" name="siteCountry" class="form-control col-3" maxlength="10"
+                                placeholder="國家上限10字(必填)" type="text">
+
+                        </div>
+                        <!-- 第三行 地區城市 -->
+
+                        <div class="row mb-3">
+                            <!-- 地區城市Title -->
+                            <label for="siteCity" class="inputTitle">地區/城市 :</label>
+
+                            <!-- 地區城市input -->
+                            <input id="siteCity" name="siteCity" class="form-control col-3 mr-4" maxlength="10"
+                                placeholder="地區/城市上限10字(必填)" type="text">
+                        </div>
+
+                        <!-- 第四行 地址 -->
+                        <div class="row mb-3">
+
+                            <!-- 地址Title -->
+                            <label for="siteAddress" class="inputTitle">景點地址 :</label>
+
+                            <!-- 地址input -->
+                            <input id="siteAddress" name="siteAddress" class="form-control col-8 mr-4" type="text">
+                            <input id="placeIdInput" type="text" name="placeId" hidden>
+                        </div>
+
+                        <!-- 第五行 開放時間 -->
+                        <div class="row mb-3">
+
+                            <!-- 開門時間Title -->
+                            <label for="siteOpen" class="inputTitle">開放時間 :</label>
+
+                            <!-- 開門時間input -->
+                            <input id="siteOpen" name="siteOpen" class="form-control col-3" type="time">
+                            <!-- 關閉時間Title -->
+                            <label for="siteClose" class="pr-2 pl-2 timeTo">至</label>
+
+                            <!-- 關閉時間input -->
+                            <input id="siteClose" name="siteClose" class="form-control col-3" type="time">
+                        </div>
+                        <!-- 第六行 備註 -->
+                        <div class="row mb-3">
+
+                            <!-- 備註Title -->
+                            <label for="siteNote" class="inputTitle">景點備註 :</label>
+
+                            <!-- 備註input -->
+                            <textarea class="form-control col-8 siteNote" name="siteNote" id="siteNote" rows="5"
+                                maxlength="200" placeholder="備註上限200字(交通資訊、門票資訊...等)"></textarea>
+                        </div>
+                    </div>
+                    <!-- 文字編輯器 -->
+                    <div>
+                        <textarea id="summernote" name="editordata"></textarea>
+                    </div>
+                    <!-- 按鈕位置 -->
+                    <div class="btnsec pt-4 pb-3 d-flex justify-content-center pl-5 pr-5">
+                        <!-- <button class="preView btn m-3">
+                            預覽文章
+                        </button> -->
+                        <button type="submit" class="btn pubLish m-3" id="sendOut">送出文章</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+    <%- include('../footer.ejs') %>
+
+    <script>
+        //顯示時間//
+        window.onload = function ShowTime() {
+            console.log(gettimeformat());
+            document.getElementById('publishTime').value = gettimeformat();
+        };
+        //取得時間 format yyyy-mm-ddTHH-MM-SS//
+        function gettimeformat() {
+            var d = new Date(),
+                year = d.getFullYear(),
+                month = "" + (d.getMonth() + 1),
+                day = "" + d.getDate(),
+                hour = "" + d.getHours(),
+                minute = "" + d.getMinutes();
+            second = "" + d.getSeconds();
+            if (month.length < 2) {
+                month = "0" + month;
+            }
+            if (day.length < 2) {
+                day = "0" + day;
+            }
+            if (hour.length < 2) {
+                hour = "0" + hour;
+            }
+            if (minute.length < 2) {
+                minute = "0" + minute;
+            }
+            if (second.length < 2) {
+                second = "0" + second;
+            }
+            var fullDate = [year, month, day].join("-");
+            var fullTime = [hour, minute].join(":");
+            return [fullDate, fullTime].join("T");
+        }
+
+        //上傳首圖//
+        function previewFile() {
+            var preview = document.querySelector('#imgFile');
+            var file = document.querySelector('input[type=file]').files[0];
+            var reader = new FileReader();
+            reader.addEventListener("load", function () {
+                preview.src = reader.result;
+            }, false);
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+
+</html>

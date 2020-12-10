@@ -1,0 +1,7 @@
+.header>div{
+  display: inline-block;
+  float: right;
+}
+#dialog,#dialogS{
+    text-align: center;
+}

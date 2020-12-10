@@ -1,0 +1,115 @@
+:root {
+    --wordC: #151515;
+    --mainC: #f25041;
+    --subCorange: #f2955e;
+    --subCgray: #d2d2d2;
+    --buttonC: #f2f0eb;
+}
+
+@font-face {
+    font-family: 'Huninn';
+    src: url(/fonts/jf-openhuninn-1.1.ttf);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Huninn';
+    color: var(--wordC);
+}
+
+.navbar {
+    width: 100%;
+    height: 80px;
+    background-color: var(--buttonC);
+}
+
+
+/* 第一塊 白色部分 輸入標題 顯示時間 加入標籤 */
+
+.whitebg {
+    background-color: var(--buttonC);
+}
+
+.narrative {
+    resize: none;
+    width: 100%;
+    /* height: 7rem; */
+}
+
+
+/* 文章的icon */
+
+.articleicon-r {
+    width: auto;
+    height: 67.33px;
+}
+
+
+/* 文章發表title */
+
+.pubTitle-r {
+    font-size: 45px;
+    color: var(--mainC);
+    font-weight: bold;
+}
+
+
+/* 紅色分隔線 */
+
+.splitline {
+    height: 3px;
+    background-color: var(--mainC);
+}
+
+
+/* 灰色部分 input前的標籤們 */
+
+.inputTitle {
+    font-size: 18px;
+    padding-left: 15px;
+    padding-right: 0.5rem;
+    min-width: 7rem;
+}
+
+.timeTo {
+    font-size: 24px;
+}
+
+
+/* 灰色區域 景點資訊*/
+
+.graybg {
+    background-color: var(--subCgray);
+}
+
+.preView,
+.pubLish {
+    font-size: 20px;
+}
+
+.preView {
+    background-color: var(--wordC);
+    color: white;
+}
+
+.pubLish {
+    background-color: var(--mainC);
+    color: white;
+}
+
+.footer {
+    height: 250px;
+    background-color: var(--buttonC);
+}
+
+.btn:hover {
+    background-color: gray;
+    color: white;
+}
+
+.siteNote {
+    resize: none;
+    width: 100%;
+    /* height: 7rem; */
+}

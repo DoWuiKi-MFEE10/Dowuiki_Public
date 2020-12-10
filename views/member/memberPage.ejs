@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引用bootstrap4 -->
+    <link rel="stylesheet" href="/stylesheets/member/bootstrap.min.css">
+   
+    <!-- 引用jquery ui 相關套件 -->
+    <script src="/javascripts/member/jquery-ui.js" defer></script>
+    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <!-- navbar 、footer、會員頁css -->
+    <link rel="stylesheet" href="/stylesheets/navbar.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+    <link rel="stylesheet" href="/stylesheets/member/memberPage.css">
+    <!-- vue 、 axios cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.js"></script>
+    <!-- 引用fontawesome cdn -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
+    <!--引用 sweetalert cdn -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- 登入登出js -->
+    <script src="/javascripts/member/login.js"></script>
+    <!-- 讀取大頭貼、上傳大頭貼js -->
+    <script src="/javascripts/member/memberImg.js" defer></script>
+</head>
+
+<body>
+    <!-- navbar範圍 -->
+    <%- include('../navbar2.ejs') %>
+    <!-- container -->
+    <div class="container main">
+        <%- include('../dialog_login.ejs') %>
+
+        <!-- 左邊功能選單 -->
+        <div class="row">
+            <div class="col-3 leftBar p-0">
+                <div class="" style="margin-bottom: 25px ;">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <div class="text-center mry-25">
+                            <label class="" for="upimgFile" style="cursor: pointer;">
+                                <img class="rounded-circle memberImg"  id="imgFile" name="imgFile" title="點擊上傳大頭貼"
+                                src="/images/user-w.svg" accpet="image/gif,image/png,image/jpeg,image/jpg,image/bmp" alt="" />
+                            </label>    
+                        </div>
+                        <div class="row">
+                            <div class="col-4 p-0"></div>
+                            <div class="col-4 p-0 text-center">
+                                <button class="btn btnPic" type="submit">更新頭貼</button>
+                                <div style="display: none;"><input id="upimgFile" name="upimgFile" type="file"
+                                        onchange="previewFile()"></div>
+                            </div>
+
+                            <div class="col-4 p-0"></div>
+                        </div>
+                    </form>
+                    <!-- <div class="mry-25 d-flex justify-content-center"><button class="btn btnPic">上傳頭貼</button></div> -->
+                </div>
+                <hr class="hrTagLeft">
+                <div class="mry-25">
+                    <div class="btn-group-vertical w-100 leftItemList" role="group"
+                        aria-label="Button group with nested dropdown">
+                        <button type="button" class="btn btn-leftItem-main">
+                            <a href="/member/memberPage" style="text-decoration: none;"><img
+                                    class="leftBarIcon verticle_center" src="/images/U-info-w.svg" alt=""><span
+                                    class="fs-20-main verticle_center">會員資料</span></a>
+                        </button>
+                        <button type="button" class="btn btn-leftItem">
+                            <a href="/member/memberSchedules" style="text-decoration: none;"><img
+                                    class="leftBarIcon verticle_center" src="/images/keep-b.svg" alt=""><span
+                                    class="fs-20 verticle_center">景點收藏</span></a>
+                        </button>
+                        <button type="button" class="btn btn-leftItem">
+                            <a href="/member/memberArticles" style="text-decoration: none;"><img
+                                    class="leftBarIcon verticle_center" src="/images/U-article-b.svg" alt=""><span
+                                    class="fs-20 verticle_center">我的文章</span></a>
+                        </button>
+                        <button type="button" class="btn btn-leftItem">
+                            <a href="/member/memberFavArticle" style="text-decoration: none;"><img
+                                    class="leftBarIcon verticle_center" src="/images/blog-b.svg" alt=""><span
+                                    class="fs-20 verticle_center">文章收藏</span></a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- 資料內容 -->
+            <div class="col-9 p-0" style="height: 44.625rem;">
+                <!-- 對話框製作 修改密碼 -->
+                <div id="dialog" title="更改密碼" style="display: none;">
+                    <div class="mry-25">
+                        <label for="oldPwd">舊密碼 :</label>
+                        <input type="password" id="oldPwd" name="oldPwd">
+                    </div>
+                    <div class="mry-25">
+                        <label for="newPwd">新密碼 :</label>
+                        <input type="password" id="newPwd" name="newPwd">
+                    </div>
+                    <div class="mry-25">
+                        <label for="checkPwd">再確認 :</label>
+                        <input type="password" id="checkPwd" name="checkPwd"><br>
+                    </div>
+                </div>
+                <!-- 對話框製作 修改暱稱 -->
+                <div id="dialogS" title="修改暱稱" style="display: none;">
+                    <div class="mry-25">
+                        <p>輸入新的暱稱</p>
+                        <input type="text" id="changeNickName" name="changeNickName">
+                    </div>
+                </div>
+                <div class="dataBasic text-center my-2">基本資料</div>
+                <div>
+                    <hr class="hrTagRight mrx-50" />
+                </div>
+                <div class="mrx-25" id="userData">
+                    <div class="row rowBorder firstRow">
+                        <div class="col-2 firstCol">帳號</div>
+                        <!-- 資料置換處 -->
+                        <div class="col-8 secCol">{{username}}</div>
+                        <div class="col-2 thirdCol">
+                            <button id="btnLogout" @click="userLogout" class="btn btnDowuiki">登出</button>
+                        </div>
+                    </div>
+
+                    <div class="row rowBorder secondRow">
+                        <div class="col-2 firstCol">密碼</div>
+                        <!-- 資料置換處 -->
+                        <div class="col-8 secCol"><input type="password" :value="password"
+                                style="border:none; background-color:none; " disabled></div>
+                        <div class="col-2 thirdCol">
+                            <button id="btnUpdatePwd" class="btn btnDowuiki">更改密碼</button>
+                        </div>
+                    </div>
+                    <div class="row rowBorder thirdRow">
+                        <div class="col-2 firstCol">暱稱</div>
+                        <!-- 資料置換處 -->
+                        <div class="col-8 secCol">{{nickname}}</div>
+                        <div class="col-2 thirdCol">
+                            <button id="btnUpdateNickName" class="btn btnDowuiki">更改暱稱</button>
+                        </div>
+                    </div>
+                    <div class="row rowBorder forthRow">
+                        <div class="col-2 selfIntro">自介</div>
+                        <div class="col-10 px-25">
+                            <!-- 資料置換處 -->
+                            <div class="" action="">
+                                <div>
+                                    <textarea class="selfArea" name="" id="" ref="selfIntro" cols="50" rows="8"
+                                        placeholder="留下個性簽名吧~">{{self_intro}}</textarea>
+                                </div>
+                                <div>
+                                    <button @click="updateSelfIntro" class="btn btnDowuiki">送出</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../footer.ejs') %>
+    <script src="/javascripts/member/jquery.js"></script>
+    <script src="/javascripts/member/popper.min.js"></script>
+    <script src="/javascripts/member/bootstrap.min.js"></script>
+    <script src="/javascripts/member/memberPage.js"></script>
+    <script>
+     
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,224 @@
+:root {
+    --wordC: #151515;
+    --mainC: #f25041;
+    --subCorange: #f2955e;
+    --subCgray: #d2d2d2;
+    --buttonC: #f2f0eb;
+}
+
+@font-face {
+    font-family: 'Huninn';
+    src: url(/fonts/jf-openhuninn-1.1.ttf);
+}
+
+body {
+    font-family: 'Huninn';
+    /* width: 100%; */
+    line-height: auto;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    color: var(--wordC);
+}
+
+nav {
+    background-color: var(--mainC);
+}
+
+.top-w,
+.map-w {
+    width: 25px;
+}
+
+.location-r {
+    width: 15px;
+}
+
+.star-r {
+    width: 15px;
+    margin-left: 5px;
+}
+
+h1 {
+    font-size: 90px;
+}
+
+h3 {
+    color: var(--mainC);
+    margin: 0;
+}
+
+.spline {
+    height: 3px;
+    background-color: var(--subCgray);
+}
+
+.splineR {
+    height: 3px;
+    background-color: var(--mainC);
+}
+
+.blogTop {
+    background-color: rgb(110, 110, 110);
+    height: 500px;
+    font-size: 18px;
+    letter-spacing: 4px;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 22.5rem;
+    object-fit: cover;
+    /* 圖片適應大小填滿 */
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 2.9rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.moreBut {
+    background-color: var(--subCorange);
+    color: white;
+    text-align: center
+}
+
+.search-b {
+    width: 30px;
+    position: absolute;
+    text-align: center;
+    display: block;
+    margin-left: 1%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.topSlogan {
+    position: absolute;
+    top: 10rem;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.sloganIcon {
+    margin-bottom: 3%;
+}
+
+.blogBtn {
+    background-color: var(--mainC);
+    color: white;
+    display: inline;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 18px;
+}
+
+.foreignTop {
+    font-size: 56px;
+}
+
+.foreignTitle1 {
+    margin-top: 2rem;
+    text-align: center
+}
+
+.cardStar {
+    margin-bottom: 1rem;
+}
+
+.blogCard,
+.cardLocation {
+    margin-top: 1rem;
+}
+
+.card-body p,
+span {
+    color: var(--wordC);
+}
+
+.sloganIcon span {
+    color: white;
+}
+
+.text-center {
+    font-size: 19px;
+}
+
+.adbg {
+    background-color: var(--buttonC);
+}
+
+
+/*---------- 輪播圖 ----------*/
+
+.point {
+    position: absolute;
+    width: 11%;
+    bottom: 20%;
+    left: -1%;
+    right: 1%;
+}
+
+
+/* #wrapper {
+  padding-bottom: 40px;
+  margin-top: 150px;
+} */
+
+#gallery-demo {
+    position: absolute;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+
+#gallery-demo .gallery img {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    -webkit-box-shadow: 11px 12px 8px -7px rgba(41, 41, 41, 1);
+    -moz-box-shadow: 11px 12px 8px -7px rgba(41, 41, 41, 1);
+    box-shadow: 11px 12px 8px -7px rgba(41, 41, 41, 1);
+}
+
+#gallery-demo .gallery-thumbnails {
+    position: absolute;
+    padding: 10px;
+    left: 49%;
+    bottom: 4%;
+    right: 0;
+    width: 100%;
+    /* background-color: rgba(0, 0, 0, .6); */
+    box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+#gallery-demo .gallery-thumbnails a {
+    margin: 0 5px;
+}
+
+#gallery-demo .gallery-thumbnails a img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+}

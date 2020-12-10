@@ -1,0 +1,148 @@
+:root {
+    --wordC: #151515;
+    --mainC: #f25041;
+    --subCorange: #f2955e;
+    --subCgray: #d2d2d2;
+    --buttonC: #f2f0eb;
+}
+
+@font-face {
+    font-family: 'Huninn';
+    src: url(/fonts/jf-openhuninn-1.1.ttf);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Huninn';
+    color: var(--wordC);
+}
+
+.navbar {
+    width: 100%;
+    height: 80px;
+    background-color: var(--buttonC);
+}
+
+
+/* 文章標籤顯示 */
+
+.tags {
+    padding: 3px 5px;
+    background-color: var(--subCgray);
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+
+/* 閱讀更多按鈕  */
+
+.readmore {
+    padding: 3px 5px;
+    background-color: var(--subCgray);
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+
+/* 標籤區與文章區分隔線 */
+
+.spline {
+    height: 2px;
+    background-color: var(--subCgray);
+}
+
+
+/* 卡片設定 */
+
+div.card {
+    border: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* 卡片內文設定 */
+
+.cardtext {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+
+
+/* 文章副標 */
+
+.sTitle {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+/* 文章大標 */
+
+.tTitle {
+    font-size: 30px;
+    color: var(--mainC);
+}
+
+
+/* 文章內文 */
+
+.tContext {
+    font-size: 18px;
+}
+
+.sTitle,
+.tTitle,
+.tContext {
+    line-height: auto;
+}
+
+
+/* 廣告部分背景 */
+
+.adbg {
+    background-color: var(--buttonC);
+    max-height: 250px;
+}
+
+
+/* 分頁數字鈕  */
+
+.numbtn {
+    width: 2em;
+    height: 2em;
+    background-color: var(--subCgray);
+    border-radius: 50%;
+    font-size: 20px;
+}
+
+
+/* 所有按鈕hover: 標籤 閱讀更多 分頁數字鈕 */
+
+.tags:hover,
+.readmore:hover,
+.numbtn:hover {
+    background-color: gray;
+    color: white;
+}
+
+.footer {
+    height: 250px;
+    background-color: var(--buttonC);
+}
+
+a {
+    color: #151515;
+}
+
+a:hover {
+    color: #151515;
+}

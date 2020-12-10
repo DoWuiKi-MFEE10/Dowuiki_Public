@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/member/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/member/memberIndex.css">
+    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+   <link rel="stylesheet" href="/stylesheets/navbar.css">
+   <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
+   <link rel="stylesheet" href="/stylesheets/footer.css">
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.js"></script>
+ <style>
+        .main {
+            margin-left: auto;
+            margin-right: auto;
+            border: none;
+        }
+
+        .header {
+            height: 80px;
+            background-color: var(--mainC);
+            font-size: 24px;
+            /* text-align: center; */
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .width300 {
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .login {
+            border: 2px solid var(--mainC);
+            border-right: none;
+            border-radius: 5px;
+        }
+
+        .signin {
+            border: 2px solid var(--mainC);
+            border-right: 2px solid var(--mainC);
+            border-radius: 5px;
+        }
+        #dialog{
+            text-align: center;
+        }
+        /* 修改dialog header 顏色 */
+        
+        .ui-widget-header {
+            border: 1px solid #aaaaaa;
+            background: #f25041 url("") 50% 50% repeat-x;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- navbar範圍 -->
+    <%- include('../navbar.ejs') %>
+    <!-- <div class="row" style="height: 80px; background-color: blanchedalmond;"></div> -->
+    <!-- container -->
+    <div class="container main mry-50 mrx-50">
+        <!-- 左邊功能選單 -->
+        <div class="row">
+            <div class="col-6 login p-0 mrx-10">
+                <div >
+                    <div class="header">
+                        登入
+                    </div>
+                    <!-- <form class="mry-50 width300" action="/" method="post"> -->
+                    <div class="mry-50 width300">
+                        <div class="form-group">
+                            <label for="userNameLogin">帳號</label>
+                            <input class="form-control" placeholder="請輸入信箱帳號" type="email" id="userNameLogin"
+                                name="userNameLogin">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="userNameLoginPwd">密碼</label>
+                            <input class="form-control" placeholder="請輸入登入密碼" type="text" id="userNameLoginPwd"
+                                name="userNameLoginPwd">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for=""></label>
+                            <input class="" type="hidden" id="" name="">
+                        </div>
+                        <!-- onclick訂閱事件-登入驗證 -->
+                        <div class="mry-50">
+                            <button class="btn btn-primary" onclick="login()">登入系統</button>
+                            <button class="btn btn-primary" onclick="">忘記密碼</button>
+                        </div>
+                    </div>    
+                        
+                    <!-- </form> -->
+                </div>
+            </div>
+            <!-- 資料內容 -->
+            <div class="col-6 signin p-0 mrx-10">
+                <div >
+                    <div class="header">
+                        註冊
+                    </div>
+                    <div class="width300 mry-50">
+                         <!-- <form class="width300 mry-50" action=""> -->
+                            <div class="form-group">
+                                <label for="userNameSignin">帳號</label>
+                                <input class="form-control" placeholder="請輸入信箱帳號" type="email" id="userNameSignin"
+                                    name="userNameSignin">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="userNameSignPwd">密碼</label>
+                                <input class="form-control" placeholder="請輸入註冊密碼" type="text" id="userNameSignPwd"
+                                    name="userNameSignPwd">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="userNickNameSign">暱稱</label>
+                                <input class="form-control" placeholder="請輸入暱稱" type="text" id="userNickNameSign"
+                                    name="userNickNameSign">
+                            </div>
+                            <div class="mry-50">
+                                <button class="btn btn-primary" onclick="register()">註冊</button>
+                            </div>
+                      
+                        <!-- </form> -->
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../footer.ejs') %>
+    <script src="/javascripts/member/jquery.js"></script>
+    <script src="/javascripts/member/popper.min.js"></script>
+    <script src="/javascripts/member/bootstrap.min.js"></script>
+    <script src="/javascripts/member/jquery-ui.js"></script>
+    <script src="/javascripts/member/memberOrdersPage.js"></script>
+    <script src="/javascripts/member/login.js"></script>
+    
+</body>
+
+</html>

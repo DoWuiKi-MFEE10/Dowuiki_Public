@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/member/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/member/memberOrdersPage.css">
+    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/member/loginheader.css">
+    <link rel="stylesheet" href="/stylesheets/navbar.css">
+    <style>
+    </style>
+</head>
+
+<body>
+    <!-- navbar範圍 -->
+    <%- include('../navbar.ejs') %>
+
+    <!-- container -->
+    <div class="container main">
+        <%- include('../dialog_login.ejs') %>
+        <!-- 左邊功能選單 -->
+        <div class="row">
+            <div class="col-3 leftBar p-0">
+                <div class="">
+                    <div class="picArea mry-25 mx-auto">
+                        <img class="memberImg" src="../images/rabbit_240x200.jpeg" alt="">
+                    </div>
+                    <div class="mry-25 d-flex justify-content-center"><button class="btn btnPic">上傳頭貼</button></div>
+                </div>
+                <hr class="hrTagLeft">
+                <div class="mry-25">
+                    <div class="btn-group-vertical w-100 leftItemList" role="group"
+                    aria-label="Button group with nested dropdown">
+                    <button type="button" class="btn btn-leftItem">
+                        <a href="/member/memberPage" style="text-decoration: none;"><img class="leftBarIcon verticle_center"
+                                src="/images/U-info-b.svg" alt=""><span
+                                class="fs-20 verticle_center">會員資料</span></a>
+                    </button>
+                    <button type="button" class="btn btn-leftItem">
+                        <a href="/member/memberSchedules" style="text-decoration: none;"><img class="leftBarIcon verticle_center"
+                                src="/images/keep-b.svg" alt=""><span
+                                class="fs-20 verticle_center">景點收藏</span></a>
+                    </button>
+                    <button type="button" class="btn btn-leftItem">
+                        <a href="/member/memberArticles" style="text-decoration: none;"><img class="leftBarIcon verticle_center"
+                                src="/images/U-article-b.svg" alt=""><span
+                                class="fs-20 verticle_center">我的文章</span></a>
+                    </button>
+                    <!-- <button type="button" class="btn btn-leftItem-main">
+                        <a href="/member/memberOrders" style="text-decoration: none;"><img class="leftBarIcon verticle_center"
+                                src="/images/U-receipt-w.svg" alt=""><span
+                                class="fs-20-main verticle_center">我的訂單</span></a>
+                    </button> -->
+                </div>
+                </div>
+               
+            </div>
+            <!-- 資料內容 -->
+            <div class="col-9 p-0">
+                <div class="dataBasic text-center">訂單查詢</div>
+                <div><hr class="hrTagRight mrx-50" /></div>
+                <!-- 全選&取消訂單 -->
+                <div class="mry-10 mrx-50 row ">
+                    <div class="col-2 checkItem">
+                        <input type="checkbox" class="checkboxSize" name="checkAll" id="checkAll">
+                        <label for="checkAll" class="fs-20 ">全選</label>
+                    </div>
+                    <div class="col-8"></div>
+                    <div class="col-2"><button class="btn btnDelete btnDowuiki">取消訂單</button></div>
+                </div>
+                <div class="mx-auto p-0 mr" id="deleOrder">
+                    <div id="modalHead" class="modal-header">
+                        <img class="cancelIcon" id="cancelArticle" src="/images/delete-w.svg" alt="">
+                    </div>
+                    <div id="modalBody" class="mry-50">
+                        <form class="" action="">
+                            <div class="deleteMsg text-center">
+                                <p>是否刪除文章?</p>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="modalFooter">
+                        <button class="btn btnOk">確認</button>
+                        <button class="btn btnCancel">取消</button>
+                    </div>
+              </div>    
+                <div class="mrx-50 mry-25">
+                  <!-- table第一區 -->  
+                    <table class="table table-hover tableStyle overflow-hidden">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" name="Checkbox[]"><span class="fs-20">No.</span></th>
+                                <th scope="col">租借用品</th>
+                                <th scope="col">取用日期</th>
+                                <th scope="col">歸還日期</th>
+                                <th scope="col">取還方式</th>
+                                <th scope="col">計費天數</th>
+                                <th scope="col">日租金</th>
+                                <th scope="col">總租金</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>日韓-翻譯+上網</td>
+                                <td>2020/11/11</td>
+                                <td>2020/11/15</td>
+                                <td>宅配</td>
+                                <td>5天</td>
+                                <td>119/日</td>
+                                <td>595</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>行李箱</td>
+                                <td>2020/11/11</td>
+                                <td>2020/11/15</td>
+                                <td>宅配</td>
+                                <td>5天</td>
+                                <td>359/日</td>
+                                <td>595</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="totalPay px-0">總計 : 2380</div>
+                </div>
+                <!-- table第二區 清除前面float-->
+                <div class="clear"></div>
+                <div class="mrx-50 mry-25">
+                    <table class="table table-hover tableStyle overflow-hidden">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" name="Checkbox[]"><span class="fs-20">No.</span></th>
+                                <th scope="col">租借用品</th>
+                                <th scope="col">取用日期</th>
+                                <th scope="col">歸還日期</th>
+                                <th scope="col">取還方式</th>
+                                <th scope="col">計費天數</th>
+                                <th scope="col">日租金</th>
+                                <th scope="col">總租金</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>日韓-翻譯+上網</td>
+                                <td>2020/11/11</td>
+                                <td>2020/11/15</td>
+                                <td>宅配</td>
+                                <td>5天</td>
+                                <td>119/日</td>
+                                <td>595</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>行李箱</td>
+                                <td>2020/11/11</td>
+                                <td>2020/11/15</td>
+                                <td>宅配</td>
+                                <td>5天</td>
+                                <td>359/日</td>
+                                <td>595</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="totalPay px-0">總計 : 2380</div>
+                </div>
+                <!-- table第二區 清除前面float-->
+                <div class="clear"></div>
+                <div class="mrx-50 mry-25">
+                    <table class="table table-hover tableStyle overflow-hidden">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" name="Checkbox[]"><span class="fs-20">No.</span></th>
+                                <th scope="col">租借用品</th>
+                                <th scope="col">取用日期</th>
+                                <th scope="col">歸還日期</th>
+                                <th scope="col">取還方式</th>
+                                <th scope="col">計費天數</th>
+                                <th scope="col">日租金</th>
+                                <th scope="col">總租金</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>日韓-翻譯+上網</td>
+                                <td>2020/11/11</td>
+                                <td>2020/11/15</td>
+                                <td>宅配</td>
+                                <td>5天</td>
+                                <td>119/日</td>
+                                <td>595</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>行李箱</td>
+                                <td>2020/11/11</td>
+                                <td>2020/11/15</td>
+                                <td>宅配</td>
+                                <td>5天</td>
+                                <td>359/日</td>
+                                <td>595</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="totalPay px-0">總計 : 2380</div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div style="height: 200px; background-color: blanchedalmond; border:1px solid black"></div>
+    <script src="/javascripts/member/jquery.js"></script>
+    <script src="/javascripts/member/popper.min.js"></script>
+    <script src="/javascripts/member/bootstrap.min.js"></script>
+    <script src="/javascripts/member/jquery-ui.js"></script>
+    <script src="/javascripts/member/memberOrdersPage.js"></script>
+    <script src="/javascripts/member/logindialog.js"></script>
+    <script src="/javascripts/member/login.js"></script>
+    <script>
+        $("#deleOrder").dialog({
+            autoOpen:false,
+            width:350,
+            height:250,
+            open: function (event, ui) {
+                //消除左上角close按鈕 
+                $(".ui-dialog-titlebar-close", $(this).parent()).hide();
+            }   
+        })
+
+        $(".btnDelete").click(function(event){
+            $("#deleOrder").dialog("open");
+            event.preventDefault();
+        })
+         // 刪除文章dialog按OK後消失
+         $(".btnOk").click(function () {
+            $("#deleOrder").dialog("close");
+        });
+        // 刪除文章dialog按取消後消失
+        $(".btnCancel").click(function () {
+            $("#deleOrder").dialog("close");
+        });
+        // 刪除文章dialog右上角X 
+        $(".cancelIcon").click(function () {
+            $("#deleOrder").dialog("close");
+        })
+    </script>
+</body>
+
+</html>

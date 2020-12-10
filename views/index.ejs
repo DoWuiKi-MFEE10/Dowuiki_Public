@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dowuiki</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+    </script>
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- vue&jquery -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- jquery UI -->
+    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+    <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/javascripts/article/simple-rating.js"></script>
+    <!-- my-JS&CSS -->
+    <link rel="stylesheet" href="/stylesheets/article/index.css" defer>
+    <script type="text/javascript" src="/javascripts/indexJS.js" defer></script>
+    <link rel="stylesheet" href="/stylesheets/navbar.css">
+    <!-- 引入icon圖示的CDN -->
+    <link href="https://file.myfontastic.com/qkBCMrD45o6CZLseFZhWN8/icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .navbar {
+            display: none;
+        }
+    </style>
+    <script>
+        //限制文字顯示數//
+        window.onload = function() {
+            $(".textJq").each(function(i) {
+                var len = 25; // 超過20個字以"..."取代
+                if ($(this).text().length > len) {
+                    $(this).attr("title", $(this).text());
+                    var text = $(this).text().substring(0, len - 1) + "...";
+                    $(this).text(text);
+                }
+            });
+            $(".titleJq").each(function(i) {
+                var len = 10; // 超過10個字以"..."取代
+                if ($(this).text().length > len) {
+                    $(this).attr("title", $(this).text());
+                    var text = $(this).text().substring(0, len - 1) + "...";
+                    $(this).text(text);
+                }
+            });
+        };
+    </script>
+
+</head>
+
+
+<body>
+    <!-- navbar -->
+    <%- include('navbar.ejs') %>
+        <!-- navbar -->
+
+        <div style="position: relative;z-index: 9;margin-top: -3rem;">
+            <video width="100%" autoplay class="indexVideo" muted="true" loop="true">
+            <source src="/images/video.mp4" type="video/mp4">
+            <source src="movie.ogg" type="video/ogg">
+        </video>
+
+            <div class="indexTop">
+                <div class="container">
+                    <div class="row justify-content-md-center">
+                        <div class="col-4 topSlogan">
+                            <h1 class="font-weight-bold text-center">Let's Go!</h1>
+                            <p class="text-center">在對的道路上迷失，是一件多美好的事情... <br> 我若不是在旅行，就一定是在規劃旅行的路上!
+                            </p>
+                            <div class="text-center sloganIcon">
+                                <img class="align-middle map-w" src="/images/map-w.svg" alt=""><span>&ensp;&ensp;Dowuiki&ensp;/&ensp;兜位趣</span>
+                            </div>
+                            <div>
+                                <img class="search-b" src="/images/search-b.svg" alt="">
+                                <input class="form-control" type="text" name="" id="searchblog" placeholder="Travel is my antidote.">
+                            </div>
+                            <div class="row topIcon font-weight-bold mt-4">
+                                <div class="col-4 text-center iconText">
+                                    <a href="/map" style="text-decoration: none; color:#f25041"><img class="align-middle map-r" src="/images/map-r.svg" alt=""><span class="ml-2">Map</span></a>
+                                </div>
+                                <div class="col-4 text-center iconText">
+                                    <a href="/articlePage/blogIndex" style="text-decoration: none; color:#f25041"><img class="align-middle blog-r" src="/images/blog-r.svg" alt=""><span class="ml-2">Blog</span></a>
+                                </div>
+                                <div class="col-4 text-center iconText">
+                                    <a href="/member/memberPage" style="text-decoration: none; color:#f25041">
+                                        <img class="align-middle U-info-r" src="/images/U-info-r.svg" alt=""><span class="ml-2" style="letter-spacing: -0.7px;">Member</span>
+                                    </a>
+
+                                </div>
+
+                            </div>
+                            <div class="table1">
+                                <!-- 你的NAVBAR-低於它就隱藏,超過它就顯示 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 收藏TOP -->
+        <div class="container float-none mt-4">
+            <div class="row justify-content-md-center">
+                <div class="col-md-auto clearfix foreignTitle1">
+                    <span class="align-middle foreignTop">漫走．嬉遊</span>
+                    <span class="align-middle indexBtn ml-3">收藏Top<img class="top-w ml-2" src="/images/top-w_2.svg"
+                        alt=""></span>
+                    <p class="text-center pText">
+                        怎麼辦，出國不想跟團卻又沒有規劃自由行景點的經驗嗎？不想動腦也沒關係！ <br> 快來蒐集嚮往的所有景點，慢下腳步，編織屬於你的夢想的旅行。
+                    </p>
+                    <div class="spline col-lg-12 w-100"></div>
+                </div>
+            </div>
+        </div>
+        <!-- 文章Card部分 -->
+        <div class="container float-none indexCard mt-5">
+            <div id="cardTop1" class="row justify-content-md-center">
+                <div class="col-3" style="margin-bottom: 2em;">
+                    <a :href="urlFir" style="text-decoration:none;" target="_blank">
+                        <div class="card clearfix">
+                            <img v-bind:src="domesFir.img_path" class="card-img-top img-thumbnail" alt="...">
+                            <div class="card-body">
+                                <h5 class="mb-3 titleJq">{{domesFir.title}}</h5>
+                                <p class="card-text textJq">{{domesFir.description}}</p>
+                                <input type="text" v-bind:value="domesFir.avgscore" id="starInput1" hidden>
+                                <div class="cardStar" id="cardStar1">
+                                    <span class="align-middle">{{domesFir.city_name}}</span>
+                                </div>
+                                <div class="splineR col-lg-12 w-100 mb-3"></div>
+                                <div class="cardLocation">
+                                    <img class="location-r" src="/images/location-r.svg" alt="">
+                                    <span class="align-middle">{{domesFir.country}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-3" style="margin-bottom: 2em;">
+                    <a :href="urlSec" style="text-decoration:none;" target="_blank">
+                        <div class="card clearfix">
+                            <img v-bind:src="domesSec.img_path" class="card-img-top img-thumbnail" alt="...">
+                            <div class="card-body">
+                                <h5 class="mb-3 titleJq">{{domesSec.title}}</h5>
+                                <p class="card-text textJq">{{domesSec.description}}</p>
+                                <input type="text" v-bind:value="domesSec.avgscore" id="starInput2" hidden>
+                                <div class="cardStar" id="cardStar2">
+                                    <span class="align-middle">{{domesSec.city_name}}</span>
+                                </div>
+                                <div class="splineR col-lg-12 w-100 mb-3"></div>
+                                <div class="cardLocation">
+                                    <img class="location-r" src="/images/location-r.svg" alt="">
+                                    <span class="align-middle">{{domesSec.country}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-3" style="margin-bottom: 2em;">
+                    <a :href="urlThir" style="text-decoration:none;" target="_blank">
+                        <div class="card clearfix">
+                            <img v-bind:src="domesThir.img_path" class="card-img-top img-thumbnail" alt="...">
+                            <div class="card-body">
+                                <h5 class="mb-3 titleJq">{{domesThir.title}}</h5>
+                                <p class="card-text textJq">{{domesThir.description}}</p>
+                                <input type="text" v-bind:value="domesThir.avgscore" id="starInput3" hidden>
+                                <div class="cardStar" id="cardStar3">
+                                    <span class="align-middle">{{domesThir.city_name}}</span>
+                                </div>
+                                <div class="splineR col-lg-12 w-100 mb-3"></div>
+                                <div class="cardLocation">
+                                    <img class="location-r" src="/images/location-r.svg" alt="">
+                                    <span class="align-middle">{{domesThir.country}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-3" style="margin-bottom: 2em;">
+                    <a :href="urlFour" style="text-decoration:none;" target="_blank">
+                        <div class="card clearfix">
+                            <img v-bind:src="domesFour.img_path" class="card-img-top img-thumbnail" alt="...">
+                            <div class="card-body">
+                                <h5 class="mb-3 titleJq">{{domesFour.title}}</h5>
+                                <p class="card-text textJq">{{domesFour.description}}</p>
+                                <input type="text" v-bind:value="domesFour.avgscore" id="starInput4" hidden>
+                                <div class="cardStar" id="cardStar4">
+                                    <span class="align-middle">{{domesFour.city_name}}</span>
+                                </div>
+                                <div class="splineR col-lg-12 w-100 mb-3"></div>
+                                <div class="cardLocation">
+                                    <img class="location-r" src="/images/location-r.svg" alt="">
+                                    <span class="align-middle">{{domesFour.country}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <span class="align-middle btn moreBut text-center" @click="getfavor">閱讀更多</span>
+
+            </div>
+        </div>
+        <!-- 廣告部分 上下padding-4(24px) 上margin-4(24px) -->
+        <div class="adbg pt-4 pb-4 mt-4">
+            <div class="container">
+                <div class="adsec d-flex justify-content-center">
+                    <div class="col-6 d-flex justify-content-center">
+                        <img id="adImg" class='img-fluid' src="/images/129.jpg" alt="">
+                    </div>
+                    <div class="col-6 d-flex justify-content-center">
+                        <img id="adImg" class='img-fluid' src="/images/129.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 瀏覽TOP -->
+        <div class="container float-none mt-5">
+            <div class="row justify-content-md-center">
+                <div class="col-md-auto clearfix foreignTitle1">
+                    <span class="align-middle foreignTop">細品．發掘</span>
+                    <span class="align-middle indexBtn ml-3">注目Top<img class="top-w ml-2" src="/images/top-w_2.svg"
+                        alt=""></span>
+                    <p class="text-center">
+                        豐富多元的生活型態、歷史人文，慢下腳步，鑽進巷弄、走進故事裡。 <br> 新的探索，一起出發！你期待看見什麼模樣的城市呢?
+                    </p>
+                    <div class="spline col-lg-12 w-100"></div>
+                </div>
+            </div>
+        </div>
+        <!-- 文章Card部分 -->
+        <div class="container float-none indexCard my-4">
+            <div id="cardTop2" class="row justify-content-md-center">
+                <div class="col-3" style="margin-bottom: 2em;">
+                    <a :href="urlFir" style="text-decoration:none;" target="_blank">
+                        <div class="card clearfix">
+                            <img v-bind:src="domesFir.img_path" class="card-img-top img-thumbnail" alt="...">
+                            <div class="card-body">
+                                <h5 class="mb-3 titleJq">{{domesFir.title}}</h5>
+                                <p class="card-text textJq">{{domesFir.description}}</p>
+                                <input type="text" v-bind:value="domesFir.avgscore" id="starInput5" hidden>
+                                <div class="cardStar" id="cardStar5">
+                                    <span class="align-middle">{{domesFir.city_name}}</span>
+                                </div>
+                                <div class="splineR col-lg-12 w-100 mb-3"></div>
+                                <div class="cardLocation">
+                                    <img class="location-r" src="/images/location-r.svg" alt="">
+                                    <span class="align-middle">{{domesFir.country}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-3" style="margin-bottom: 2em;">
+                    <a :href="urlSec" style="text-decoration:none;" target="_blank">
+                        <div class="card clearfix">
+                            <img v-bind:src="domesSec.img_path" class="card-img-top img-thumbnail" alt="...">
+                            <div class="card-body">
+                                <h5 class="mb-3 titleJq">{{domesSec.title}}</h5>
+                                <p class="card-text textJq">{{domesSec.description}}</p>
+                                <input type="text" v-bind:value="domesSec.avgscore" id="starInput6" hidden>
+                                <div class="cardStar" id="cardStar6">
+                                    <span class="align-middle">{{domesSec.city_name}}</span>
+                                </div>
+                                <div class="splineR col-lg-12 w-100 mb-3"></div>
+                                <div class="cardLocation">
+                                    <img class="location-r" src="/images/location-r.svg" alt="">
+                                    <span class="align-middle">{{domesSec.country}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-3" style="margin-bottom: 2em;">
+                    <a :href="urlThir" style="text-decoration:none;" target="_blank">
+                        <div class="card clearfix">
+                            <img v-bind:src="domesThir.img_path" class="card-img-top img-thumbnail" alt="...">
+                            <div class="card-body">
+                                <h5 class="mb-3 titleJq">{{domesThir.title}}</h5>
+                                <p class="card-text textJq">{{domesThir.description}}</p>
+                                <input type="text" v-bind:value="domesThir.avgscore" id="starInput7" hidden>
+                                <div class="cardStar" id="cardStar7">
+                                    <span class="align-middle">{{domesThir.city_name}}</span>
+                                </div>
+                                <div class="splineR col-lg-12 w-100 mb-3"></div>
+                                <div class="cardLocation">
+                                    <img class="location-r" src="/images/location-r.svg" alt="">
+                                    <span class="align-middle">{{domesThir.country}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-3" style="margin-bottom: 2em;">
+                    <a :href="urlFour" style="text-decoration:none;" target="_blank">
+                        <div class="card clearfix">
+                            <img v-bind:src="domesFour.img_path" class="card-img-top img-thumbnail" alt="...">
+                            <div class="card-body">
+                                <h5 class="mb-3 titleJq">{{domesFour.title}}</h5>
+                                <p class="card-text textJq">{{domesFour.description}}</p>
+                                <input type="text" v-bind:value="domesFour.avgscore" id="starInput8" hidden>
+                                <div class="cardStar" id="cardStar8">
+                                    <span class="align-middle">{{domesFour.city_name}}</span>
+                                </div>
+                                <div class="splineR col-lg-12 w-100 mb-3"></div>
+                                <div class="cardLocation">
+                                    <img class="location-r" src="/images/location-r.svg" alt="">
+                                    <span class="align-middle">{{domesFour.country}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <span class="align-middle btn moreBut text-center" @click="getwatch">閱讀更多</span>
+            </div>
+        </div>
+        <!-- footer -->
+        <%- include('footer.ejs') %>
+            <script>
+                //滑鼠滾輪滾動事件
+                window.onmousewheel = function(event) {
+                    //console.log(event);
+
+                    //window.pageYOffset=>
+                    //https://developer.mozilla.org/en-US/docs/Web/API/Window/pageYOffset
+
+                    //window.scrollY=>當前頁面的垂直像素數
+                    //https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollY
+                    console.log("-------------------------");
+                    //當前頁面的垂直像素數
+                    var scrollY = window.scrollY;
+                    console.log("當前頁面的垂直像素數=>" + scrollY + "px");
+
+                    //物件在畫面的高度
+                    var elementH = document.getElementsByClassName("table1")[0].offsetTop;
+                    console.log("物件在畫面的高度=>" + elementH + "px");
+
+                    //如果當前的高度大於物件的高度就把navbar show 出來
+                    if (scrollY >= elementH) {
+                        console.log("navbar-show");
+                        $(".navbar").addClass("intro");
+                        // $(".navbar").show();
+
+                    } else {
+                        console.log("navbar-hide");
+                        $(".navbar").removeClass("intro");
+                        // $(".navbar").hide();
+
+
+                    }
+                };
+
+                //抓取右邊卷軸滑動事件
+                document.addEventListener('scroll', rightScroll); //新增監聽事件document.addEventListener('事件','FUNCTION NAME')
+                //監聽事件種類 => https://www.fooish.com/javascript/dom/event.html
+                function rightScroll() {
+                    console.log("-------------------------");
+                    //當前頁面的垂直像素數
+                    var scrollY = window.scrollY;
+                    console.log("當前頁面的垂直像素數=>" + scrollY + "px");
+
+                    //物件在畫面的高度
+                    var elementH = document.getElementsByClassName("table1")[0].offsetTop;
+                    console.log("物件在畫面的高度=>" + elementH + "px");
+
+                    //如果當前的高度大於物件的高度就把navbar show 出來
+                    if (scrollY >= elementH) {
+                        console.log("navbar-show");
+                        $(".navbar").addClass("intro");
+                        $(".navbar").show();
+                    } else {
+                        console.log("navbar-hide");
+                        $(".navbar").removeClass("intro");
+                        $(".navbar").hide();
+                    }
+
+                };
+            </script>
+
+</body>
+
+</html>

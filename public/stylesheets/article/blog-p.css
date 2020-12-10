@@ -1,0 +1,173 @@
+:root {
+    --wordC: #151515;
+    --mainC: #f25041;
+    --subCorange: #f2955e;
+    --subCgray: #d2d2d2;
+    --buttonC: #f2f0eb;
+}
+
+@font-face {
+    font-family: 'Huninn';
+    src: url(/fonts/jf-openhuninn-1.1.ttf);
+}
+
+body {
+    font-family: 'Huninn';
+    /* width: 100%; */
+    line-height: auto;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.U-article-b {
+    width: 25px;
+    margin-left: 1rem;
+}
+
+.star-r,
+.like-w {
+    width: 15px;
+}
+
+.location-r {
+    width: 10px;
+}
+
+nav {
+    background-color: var(--mainC);
+}
+
+.spline {
+    height: 3px;
+    background-color: var(--subCgray);
+}
+
+.blogBtn {
+    background-color: var(--mainC);
+    color: white;
+    display: inline;
+    width: 100px;
+    /* height: 40px; */
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 15px;
+    margin-left: 2rem;
+    cursor: pointer;
+}
+
+.mapBtn {
+    background-color: var(--buttonC);
+    color: var(--mainC);
+    display: inline;
+    width: 100px;
+    /* height: 40px; */
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 15px;
+    margin-left: 2rem;
+}
+
+.blogTitle {
+    font-size: 25px;
+}
+
+.blogData,
+.cardHeader {
+    margin-top: 1rem;
+    font-size: 18px;
+}
+
+.tags {
+    padding: 3px 5px;
+    background-color: var(--subCgray);
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.card-header {
+    background-color: var(--subCorange);
+}
+
+.card-body td {
+    font-size: 15px;
+}
+
+.table-sm td,
+.table-sm th {
+    padding: .2rem;
+}
+.tableTd{
+    width:15%;
+}
+.reportBtn,
+.scoreIBtn {
+    background-color: var(--subCgray);
+    color: #151515;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: .5rem;
+}
+
+.reportBtn:hover,
+.scoreIBtn:hover {
+    background-color: gray;
+    color: white;
+}
+
+span.scoreBtn {
+    background-color: var(--mainC);
+    color: white;
+    font-size: 24.5px;
+    padding: .5rem;
+    border-radius: 5px;
+    pointer-events: none
+}
+
+span.scoreBtn:hover {
+    color: white;
+    pointer-events: none
+}
+
+
+/* .scoreIBtn{
+    background-color:  #f2955e;
+    color: white;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: .5rem;
+
+} */
+
+.userImg {
+    border: 0.5rem solid rgba(255, 255, 255, 0.2);
+    width: 10rem;
+}
+
+
+/*星星*/
+
+.simple-rating i {
+    color: var(--mainC);
+    display: inline-block;
+    padding: 1px 2px;
+    cursor: pointer;
+}
+
+.msgTextarea {
+    resize: none;
+    width: 100%;
+    height: 7rem;
+}
+
+.msgFilebut {
+    background-color: var(--mainC);
+    color: white;
+    border-radius: 5px;
+}
+
+.msgClosebut {
+    background-color: var(--wordC);
+    color: white;
+    border-radius: 5px;
+}

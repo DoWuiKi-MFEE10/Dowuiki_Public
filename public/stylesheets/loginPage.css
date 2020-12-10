@@ -1,0 +1,86 @@
+:root {
+    --wordC: #151515;
+    --mainC: #f25041;
+    --subCorange: #f2955e;
+    --subCgray: #d2d2d2;
+    --buttonC: #f2f0eb;
+}
+
+@font-face {
+    font-family: 'Huninn';
+    src: url(/fonts/jf-openhuninn-1.1.ttf);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Huninn';
+    color: var(--buttonC);
+}
+
+.loginBody {
+    margin-top: 3.5rem;
+}
+
+.inputText {
+    position: absolute;
+    top: 7rem;
+    color: var(--buttonC);
+    border-radius: 7px;
+    text-shadow: 1px 1px 2px #151515;
+    background-color: #00000069;
+}
+
+.inputText label {
+    font-size: 1.25rem;
+}
+
+.inputText input {
+    background-color: var(--buttonC);
+}
+
+.spline {
+    height: 0.1rem;
+    background-color: var(--buttonC);
+}
+
+.loginTitle {
+    font-size: 2.5rem;
+}
+
+.btnLogin {
+    color: var(--buttonC);
+    background-color: var(--mainC);
+    margin-right: 2%;
+}
+
+.registerText {
+    position: absolute;
+    top: 6rem;
+    color: var(--buttonC);
+    border-radius: 7px;
+    text-shadow: 1px 1px 2px #151515;
+    background-color: #00000069;
+}
+
+.registerText label {
+    font-size: 1.25rem;
+}
+
+.btnRegister {
+    color: var(--buttonC);
+    background-color: var(--mainC);
+    margin-right: 2%;
+}
+
+.butT {
+    position: absolute;
+    top: 0.1rem;
+    border-radius: 7px;
+}
+
+.butStyle {
+    color: var(--buttonC);
+    background-color: var(--mainC);
+    font-size: 1rem;
+}

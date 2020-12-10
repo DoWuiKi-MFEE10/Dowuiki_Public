@@ -1,0 +1,364 @@
+:root {
+    --wordC: #151515;
+    --mainC: #f25041;
+    --subCorange: #f2955e;
+    --subCgray: #d2d2d2;
+    --buttonC: #f2f0eb;
+}
+
+@font-face {
+    font-family: "Huninn";
+    src: url('/stylesheets/member/jf-openhuninn-1.1.ttf');
+}
+
+body {
+    font-family: "Huninn";
+}
+
+
+/* 整體內容區 */
+
+.main {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border: 2px solid var(--mainC);
+    background-color: var(--buttonC);
+    height: 823px;
+}
+
+.mry-25 {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.mry-50 {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.mrx-25 {
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.mrx-50 {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+
+/* 修改左右padding */
+
+.px-25 {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+
+/* 左側資訊欄外層div */
+
+.leftBar {
+    background-color: var(--mainC);
+    border-right: 2px solid var(--mainC);
+    height: 820px;
+}
+
+
+/* 按紐設定 */
+
+.btnDowuiki {
+    width: 90px;
+    height: 25px;
+    background-color: var(--mainC);
+    color: var(--buttonC);
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float: right;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    /* margin-top: 10px; */
+}
+
+
+/* 大頭貼圖片區域 */
+
+.picArea {
+    width: 165px;
+    height: 165px;
+    /* border-radius: 100%; */
+}
+
+
+/* 上傳按鈕 */
+
+.btnPic {
+    width: 90px;
+    height: 25px;
+    font-size: 15px;
+    background-color: var(--buttonC);
+    color: var(--mainC);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* 大頭貼 */
+
+.memberImg {
+    width: 165px;
+    height: 165px;
+    border: 2px solid var(--buttonC);
+    border-radius: 100%;
+}
+
+
+/* 左邊功能選單文字 */
+
+.fs-20 {
+    font-size: 25px;
+    color: var(--wordC);
+    text-decoration: none;
+}
+
+
+/* 左邊功能當前選單圖、文字垂直置中 */
+
+.verticle_center {
+    line-height: 3px;
+    vertical-align: middle;
+    margin: 5px;
+}
+
+
+/* 左邊功能當前選單樣式 */
+
+.btn-leftItem-main {
+    color: #fff;
+    background-color: var(--subCorange);
+    border-color: var(--subCorange);
+}
+
+
+/* 左邊功能當前選單文字 */
+
+.fs-20-main {
+    font-size: 25px;
+    color: var(--buttonC);
+    text-decoration: none;
+}
+
+
+/* 左邊功能選單樣式 */
+
+.btn-leftItem {
+    color: #fff;
+    background-color: var(--buttonC);
+    border-color: var(--buttonC);
+}
+
+
+/* 左邊功能選單hover效果 */
+
+.btn-leftItem:hover {
+    color: #fff;
+    background-color: var(--subCorange);
+    border-color: var(--subCorange);
+}
+
+
+/* 左邊功能選單點擊效果 */
+
+.btn-leftItem:focus,
+.btn-leftItem.focus {
+    color: #fff;
+    background-color: var(--subCorange);
+    border-color: var(--subCorange);
+    box-shadow: 0 0 0 0.2rem rgba(242, 64, 65, 0.5);
+}
+
+
+/* 基本資料標題 */
+
+.dataBasic {
+    font-size: 50px;
+    color: var(--mainC);
+}
+
+
+/* 幫左右、上方增加邊框 */
+
+.rowBorder {
+    border-top: 2px solid var(--mainC);
+    border-left: 2px solid var(--mainC);
+    border-right: 2px solid var(--mainC);
+}
+
+
+/* 右側基本資料hr tag */
+
+.hrTagRight {
+    height: 3px;
+    background-color: var(--mainC);
+    margin-top: 0px;
+}
+
+
+/* 左側hr */
+
+.hrTagLeft {
+    width: 235px;
+    height: 2px;
+    background-color: var(--buttonC);
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+
+/* 左側icon樣式 */
+
+.leftBarIcon {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+/* 勾選樣式 */
+
+.checkboxSize {
+    width: 20px;
+    height: 20px;
+    line-height: 100%;
+}
+
+
+/* 表格樣式 */
+
+table,
+th,
+td {
+    border: 2px solid var(--mainC);
+    font-size: 14px;
+    text-align: center;
+}
+
+
+/* 表頭 */
+
+th {
+    background-color: var(--subCorange);
+}
+
+
+/* 去掉fload前一層效果 */
+
+.clear {
+    clear: both;
+}
+
+
+/* 總金額 */
+
+.totalPay {
+    font-size: 18px;
+    border-bottom: 2px solid var(--subCorange);
+    float: right;
+}
+
+
+/* 文字溢出處理 */
+
+.textOver {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+/* 每個checkbox 標題*/
+
+.checkItem>input,
+.checkItem>label {
+    line-height: 3px;
+    vertical-align: middle;
+}
+
+
+/* dialog header */
+
+#modalHead {
+    border-radius: 5px 5px 0 0;
+    height: 30px;
+    background-color: var(--mainC);
+}
+
+
+/* dialog 右上角x */
+
+.cancelIcon {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
+
+/* dialog footer樣式 */
+
+#modalFooter {
+    text-align: center;
+}
+
+
+/* dialog 主體樣式*/
+
+#deleOrder {
+    width: 350px;
+    height: 205px;
+    border-radius: 5px;
+    box-shadow: 0px 5px 11px 3px rgba(0, 0, 0, 0.45);
+    position: relative;
+    background-color: var(--buttonC);
+}
+
+
+/* dialog提示訊息 */
+
+.deleteMsg {
+    margin: 25px 0px 25px 0px;
+}
+
+.deleteMsg>p {
+    font-size: 24px;
+}
+
+
+/* dialog OK按鈕 */
+
+.btnOk {
+    width: 56px;
+    height: 20px;
+    font-size: 12px;
+    background-color: var(--mainC);
+    color: var(--buttonC);
+    line-height: 10px;
+}
+
+
+/* dialog 取消按鈕 */
+
+.btnCancel {
+    width: 56px;
+    height: 20px;
+    font-size: 12px;
+    color: var(--buttonC);
+    background-color: var(--wordC);
+    line-height: 10px;
+}

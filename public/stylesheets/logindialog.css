@@ -1,0 +1,36 @@
+   /* 修改header 背景色 */
+   .ui-widget-header{ 
+    border: 1px solid #aaaaaa; 
+    background: #f25041  url("") 50% 50% repeat-x; 
+    color: white; 
+    font-weight: bold; 
+}
+
+
+.mry-25 {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.mry-50 {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.mrx-25 {
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.mrx-50 {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+
+/* 修改左右padding */
+
+.px-25 {
+    padding-left: 25px;
+    padding-right: 25px;
+}

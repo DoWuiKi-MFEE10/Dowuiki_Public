@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dowuiki</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+        </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+        </script>
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- vue&jquery -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- jquery UI -->
+    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+    <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/javascripts/article/simple-rating.js"></script>
+    <!-- my-JS&CSS -->
+    <script type="" src="/javascripts/article/blog-p.js" defer></script>
+    <link rel="stylesheet" href="/stylesheets/article/blog-p.css" defer>
+    <link rel="stylesheet" href="/stylesheets/navbar.css">
+    <!-- 引入icon圖示的CDN -->
+    <link href="https://file.myfontastic.com/qkBCMrD45o6CZLseFZhWN8/icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+</head>
+
+<body>
+    <!-- navbar -->
+    <%- include('../navbar.ejs') %>
+    <!-- 文章Title -->
+    <div id="pagecon" class="container float-none mt-5">
+        <div class="row justify-content-center">
+            <div class="col-11 clearfix foreignTitle1">
+                <span class="align-middle blogTitle font-weight-bolder">{{artCont.title}}</span>
+                <span style="visibility: hidden;" id="artId">{{artCont.article_id}}</span>
+                <span id="likeBtn" class="align-middle blogBtn">收藏&ensp;<img class="like-w" src="/images/like-w.svg"
+                        alt=""></span>
+                <p class="blogData">
+                    <span class="align-middle">{{artCont.ctDate}}&ensp;{{artCont.ctTime}}</span>&ensp;&ensp;
+                    <span class="align-middle">作者：{{artCont.nickname}}</span>
+                </p>
+                <!-- 標籤顯示 -->
+                <div id="tagsec" class="tagsec mb-3 justify-content-center">
+                    <div class=" d-inline-flex">
+                        <button class="btn tags mr-4" v-for='tagValue in tagCont'>{{tagValue}}</button>
+                    </div>
+                </div>
+                <!-- 景點地圖資料顯示 -->
+                <div class="spline col-12 w-100 mb-3"></div>
+                <div class="card mb-3">
+                    <div class="card-header ">
+                        <div class="row justify-content-between">
+                            <div class="col-6 align-self-center">
+                                <span class=" text-center cardHeader">{{artCont.title}}</span>
+                            </div>
+                            <div class="col-6 d-flex flex-fill justify-content-end">
+                                <button v-on:click="gotoMap" class="btn mapBtn">查看地圖<img class="location-r ml-1"
+                                        src="/images/location-r.svg" alt=""></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body ">
+                        <table class="table table-borderless table-sm">
+                            <tr>
+                                <td class="tableTd">景點名稱：</td>
+                                <td>
+                                    {{artCont.sitename}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tableTd">所在國家：</td>
+                                <td>
+                                    {{artCont.country}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tableTd">地區/城市：</td>
+                                <td>
+                                    {{artCont.city_name}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tableTd">景點地址：</td>
+                                <td>
+                                    {{artCont.address}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tableTd">開放時間：</td>
+                                <td> {{artCont.starttime}}- {{artCont.endtime}}</td>
+                            </tr>
+                            <tr>
+                                <td class="tableTd">景點備註：</td>
+                                <td>
+                                    {{artCont.remarks}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!-- blog文章內容顯示 -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <!-- 文章內容from article_content 開頭-->
+                        <span v-html="noteCont.content"></span>
+                    </div>
+                </div>
+                <div class=" mb-3 d-flex justify-content-end">
+                    <!-- <button class="btn reportBtn">檢舉文章</button> -->
+                    <input type="button" class="btn reportBtn" value="檢舉文章" onclick="dialogR();">
+
+                </div>
+                <div class="spline w-100 mb-3"></div>
+                <!-- 評分留言區 -->
+                <div class=" mb-4 ">
+                    <!-- Test stars -->
+                    <div id="starScore">
+                    </div>
+                    <span class="scoreBtn btn align-middle">評分留言區：</span>
+                    <input type="button" class="btn scoreIBtn" value="我要留言" onclick="dialog();">
+                </div>
+
+                <div class="card mb-3" v-for="(comm, index) in commentCont">
+                    <div class="card-body">
+                        <div class="row justify-content-between">
+                            <div class="col-3 align-self-center">
+                                <span class=" d-flex justify-content-center"><img
+                                        class="userImg rounded-circle card-img-left" v-bind:src="comm.imgurl"
+                                        alt="" /></span>
+                            </div>
+                            <div class="col-9 ">
+                                <h5 class="card-text">會員帳號：{{comm.username}}</h5>
+                                <input type="text" v-bind:value="comm.score" v-bind:id="'starInput'+index" hidden>
+                                <div class="cardStar mb-2" v-bind:id="'cardstar'+index">
+                                </div>
+                                <p class="card-text">
+                                    {{comm.content}}
+                                </p>
+                                <div class="d-flex flex-fill justify-content-end">
+                                    <input type="button" class="btn reportBtn" style="font-size: 12px;" value="檢舉留言"
+                                        onclick="dialogR();">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+    <%- include('../footer.ejs') %>
+    <!-- footer -->
+    <!--=================== Dialog-新增留言====================-->
+    <div id="dialog" title="新增留言" style="display: none;">
+        <p class="mt-2">星等評分： <input class="rating" name="star" id="star"></p>
+        <p>心得留言： <textarea class="msgTextarea" name="message" id="message" maxlength="50" rows="5"
+                placeholder="寫出你的心得吧!上限50字"></textarea></p>
+    </div>
+    <!--=================== Dialog-新增留言====================-->
+    <!--===================START Dialog-檢舉文章====================-->
+    <div id="dialogR" title="檢舉" style="display: none;">
+        <label class="mt-2" for="reason">檢舉原因：</label>
+        <select class="mt-2" name="reason" id="reason">
+            <option value="" disabled selected>請選擇</option>
+            <option value="1">內含令人反感的內容</option>
+            <option value="2">內含暴力和犯罪行為</option>
+            <option value="3">內含垃圾訊息/不實內容</option>
+            <option value="4">惡意洗版</option>
+            <option value="5">其他</option>
+
+        </select>
+        <p>輸入其他： <textarea class="msgTextarea" name="megReason" id="megReason" maxlength="30" rows="5"
+                placeholder="請輸入其他原因，上限30字"></textarea></p>
+    </div>
+    <!--===================END Dialog-檢舉文章====================-->
+    <!-- ===================START Dialog-檢舉留言====================-->
+    <!-- <div id="dialogR" title="檢舉" style="display: none;">
+        <label class="mt-2" for="reason">檢舉原因：</label>
+        <select class="mt-2" name="reason" id="reason">
+            <option value="" disabled selected>請選擇</option>
+            <option value="0">內含令人反感的內容</option>
+            <option value="1">內含暴力和犯罪行為</option>
+            <option value="2">內含垃圾訊息/不實內容</option>
+            <option value="3">惡意洗版</option>
+            <option value="4">其他</option>
+
+        </select>
+        <p>輸入其他： <textarea class="msgTextarea" name="megReason" id="megReason" maxlength="30" rows="5"
+                placeholder="請輸入其他原因，上限30字"></textarea></p>
+    </div> -->
+    <!--===================END Dialog-檢舉留言==================== -->
+    <script>
+        // 新增留言 //
+        function dialog() {
+            $("#dialog").dialog({
+                width: 500,
+                height: 400,
+                modal: true,
+                buttons: {
+                    "Ok": function () {
+                        $(this).dialog(msgSubmit());
+
+                        $(this).dialog("close");
+                        //按下OK後呼叫function msgSubmit()
+                    },
+                    "Cancel": function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+        }
+
+        // 檢舉文章 //
+        function dialogR() {
+            $("#dialogR").dialog({
+                width: 500,
+                height: 400,
+                modal: true,
+                buttons: {
+                    "Ok": function () {
+                        $(this).dialog("close");
+                        $(this).dialog(reportSubmit());
+                        //按下OK後呼叫function reportSubmit()
+                        $(this).dialog("close");
+                    },
+                    "Cancel": function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+
+        }
+
+        // 檢舉留言 //
+        // function dialogR() {
+        //     $("#dialogR").dialog({
+        //         width: 500,
+        //         height: 400,
+        //         modal: true,
+        //         buttons: {
+        //             "Ok": function () {
+        //                 $(this).dialog("close");
+        //                 $(this).dialog(reportSubmit());
+        //                 //按下OK後呼叫function reportSubmit()
+        //             },
+        //             "Cancel": function () {
+        //                 $(this).dialog("close");
+        //             }
+        //         }
+        //     });
+        // }
+
+
+        // 星星//
+        $(document).ready(function () {
+            $('.rating').rating();
+        });
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-36251023-1']);
+        _gaq.push(['_setDomainName', 'jqueryscript.net']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') +
+                '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+</body>
+
+</html>

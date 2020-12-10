@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/article/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/article/asresultPage.css">
+    <link rel="stylesheet" href="/stylesheets/navbar.css">
+    <!--vue.js-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+        </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 引入icon圖示的CDN -->
+    <link href="https://file.myfontastic.com/qkBCMrD45o6CZLseFZhWN8/icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+
+    <script type="" src="/javascripts/article/asresultPage.js" defer></script>
+    <title>搜尋結果</title>
+</head>
+
+<body>
+    <!-- navbar -->
+    <%- include('../navbar.ejs') %>
+    <div class="container" id="fullPage">
+        <!-- tag部分 -->
+        <div id="tagsec" class="mt-5 mb-4 d-flex justify-content-center">
+            <div class="col-lg-11 d-inline-flex">
+                <button class="btn tags mr-4" v-for='(tagname, index) in tagArray' :key="`tagname-${index}`"
+                    @click="getTag">{{tagname}}</button>
+            </div>
+        </div>
+        <!-- 標籤區與文章區分隔線 -->
+        <div class="spline col-lg-12 w-100"></div>
+        <!-- 上半文章部分 -->
+        <div class="articlesec mt-3 d-flex justify-content-center">
+            <div id="insertcard" class="col-xl-11 col-lg-12">
+                <template v-for="(item, index) in list">
+                    <!-- 廣告在三筆資料後出現 -->
+                    <div v-if="index !=0 && index % 3 == 0">
+                        <br>
+                        <div class="adbg py-4 d-none d-lg-block">
+                            <div class="container">
+                                <div class="adsec d-flex justify-content-center">
+                                    <div class="col-6 d-flex justify-content-center">
+                                        <img id="adImg" class='img-fluid' src="/images/129.jpg" alt="">
+                                    </div>
+                                    <div class="col-6 d-flex justify-content-center">
+                                        <img id="adImg" class='img-fluid' src="/images/129.jpg" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a :href="'/articlePage/blogPage/'+item.article_id" style="text-decoration: none;" target="_blank">
+                        <div class="card my-3">
+                            <div class="row no-gutters">
+                                <div class="col-lg-4 col-xl-4">
+                                    <img v-bind:src="item.img_path" alt="" class="card-img">
+                                </div>
+                                <div class="col-lg-8 col-xl-8">
+                                    <div class="card-body h-100 pt-0 pb-0">
+                                        <p id="sTitle" class="sTitle">
+                                            {{item.createtime}}&ensp;{{item.country}}&ensp;{{item.city_name}}</p>
+                                        <p id="tTitle" class="tTitle">{{item.title}}</p>
+                                        <p id="tContext" class="tContext">{{item.description}}</p>
+                                        <div class="btnsec d-flex justify-content-end">
+                                            <div class="d-flex flex-column">
+                                                <!-- <a id="readmore" style="text-decoration:none;" target="_blank"> -->
+                                                <button class="btn readmore mb-0">閱讀更多</button>
+                                                <!-- </a> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </template>
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+    <%- include('../footer.ejs') %>
+
+
+
+</body>
+
+</html>

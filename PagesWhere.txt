@@ -1,0 +1,65 @@
+# DoWuiKi
+各頁的路徑:
+首頁: /
+文章首頁: /articlePage/blogIndex
+文章內容頁: /articlePage/blogPage
+發表文章頁: /articlePage/apublishPage
+搜尋文章結果頁: /articlePage/asresultPage
+地圖頁: /map
+會員登入頁: /member
+會員資料頁: /member/memberPage
+會員旅程頁: member/memberSchedules
+會員文章頁:/member/memberArticles
+後台: /admin
+
+
+======共用檔案如下(views資料夾之下各系統資料夾下的各功能檔案為當前路徑)======
+
+
+引用 navbar 功能列:
+步驟一:
+在body裡面貼入navbar
+
+<%- include('../navbar.ejs') %>
+
+步驟二:
+引用navbar css檔案路徑:
+
+<link rel="stylesheet" href="/stylesheets/navbar.css">
+
+--------------------------------------------
+引用 footer 功能列:
+步驟一:
+在body裡面貼入footer
+
+<%- include('../footer.ejs') %>
+
+步驟二:
+引用footer css檔案路徑(請將下列都貼上):
+
+<!-- 引入icon圖示的CDN(有更新!!!!) -->
+<link href="https://file.myfontastic.com/qkBCMrD45o6CZLseFZhWN8/icons.css" rel="stylesheet">
+<link rel="stylesheet" href="/stylesheets/footer.css">
+
+
+--------------------------------------------
+引用dialog登入功能如下:
+步驟一:
+在body裡面貼入dialog 登入視窗:
+
+<%- include('../dialog_login.ejs') %>
+
+步驟二:
+引用 登入 dialog的js檔案路徑(讓dialog可以彈出):
+
+<script src="/javascripts/logindialog.js"></script>
+
+步驟三:
+引用 login.js 登入/登出功能(登入功能呼叫):
+
+<script src="/javascripts/member/login.js"></script>
+
+步驟四:
+引用登入dialog的css檔案(可修改dialog的header顏色、字體顏色):
+
+<link rel="stylesheet" href="/stylesheets/logindialog.css">

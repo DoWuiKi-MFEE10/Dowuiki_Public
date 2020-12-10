@@ -1,0 +1,404 @@
+:root {
+    --wordC: #151515;
+    --mainC: #f25041;
+    --subCorange: #f2955e;
+    --subCgray: #d2d2d2;
+    --buttonC: #f2f0eb;
+}
+
+@font-face {
+    font-family: "Huninn";
+    src: url('/stylesheets/member/jf-openhuninn-1.1.ttf');
+}
+
+body {
+    font-family: "Huninn";
+}
+
+
+/* 整體內容區 */
+
+.main {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    /* border: 2px solid var(--mainC);
+    background-color: var(--buttonC); */
+}
+
+.mry-10 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.mrx-10 {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.mry-25 {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.mry-50 {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.mrx-25 {
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.mrx-50 {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+
+/* 按紐設定 */
+
+.btnDowuiki {
+    width: 90px;
+    height: 25px;
+    background-color: var(--mainC);
+    color: var(--buttonC);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float: right;
+    /* margin-top: 10px; */
+}
+
+
+/* 上傳大頭貼 */
+
+.btnPic {
+    width: 6.25rem;
+    height: 1.875rem;
+    font-size: 1.15rem;
+    background-color: var(--buttonC);
+    color: var(--mainC);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* 左側資訊欄外層div */
+
+.leftBar {
+    height: inherit;
+    background-color: var(--mainC);
+    /* border-right: 2px solid var(--mainC); */
+    border-radius: 10px 0px 0px 10px;
+}
+
+
+/* 左側hr標籤 */
+
+.hrTagLeft {
+    width: 235px;
+    height: 2px;
+    background-color: var(--buttonC);
+    margin-top: 0px;
+}
+
+
+/* 按紐設定 */
+
+
+/* 圖片區域大小 */
+
+.picArea {
+    width: 165px;
+    height: 165px;
+    /* border-radius: 100%; */
+}
+
+
+/* 大頭貼 */
+
+.memberImg {
+    width: 165px;
+    height: 165px;
+    border: 6px solid var(--buttonC);
+    border-radius: 100%;
+}
+
+
+/* 上傳大頭貼按鈕 */
+
+.btnPic {
+    width: 90px;
+    height: 25px;
+    font-size: 15px;
+    background-color: var(--buttonC);
+    color: var(--mainC);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hrTagLeft {
+    width: 235px;
+    height: 1px;
+    background-color: var(--buttonC);
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.leftBarIcon {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+/* 左邊功能選單文字 */
+
+.fs-20 {
+    font-size: 1.25rem;
+    color: var(--wordC);
+    text-decoration: none;
+}
+
+
+/* 左邊功能當前選單圖、文字垂直置中 */
+
+.verticle_center {
+    line-height: 3px;
+    vertical-align: middle;
+    margin: 5px;
+}
+
+
+/* 左邊功能當前選單樣式 */
+
+.btn-leftItem-main {
+    color: #fff;
+    background-color: var(--subCorange);
+    border-color: var(--subCorange);
+}
+
+
+/* 左邊功能當前選單文字 */
+
+.fs-20-main {
+    font-size: 1.25rem;
+    color: var(--buttonC);
+    text-decoration: none;
+}
+
+
+/* 左邊功能選單樣式 */
+
+.btn-leftItem {
+    color: #fff;
+    background-color: var(--buttonC);
+    border-color: var(--buttonC);
+}
+
+
+/* 左邊功能選單hover效果 */
+
+.btn-leftItem:hover {
+    color: #fff;
+    background-color: var(--subCorange);
+    border-color: var(--subCorange);
+}
+
+
+/* 左邊功能選單點擊效果 */
+
+.btn-leftItem:focus,
+.btn-leftItem.focus {
+    color: #fff;
+    background-color: var(--subCorange);
+    border-color: var(--subCorange);
+    box-shadow: 0 0 0 0.2rem rgba(242, 64, 65, 0.5);
+}
+
+
+/* 資料內容區 */
+
+.dataContent {
+    width: 100%;
+    height: 100%;
+    /* border: 2px solid var(--mainC); */
+    margin: 20px 100px 20px 20px;
+    /* position: relative; */
+}
+
+
+/* 行程資料的icon */
+
+.rightIcon {
+    width: 20px;
+    height: 20px;
+}
+
+
+/* 資料內容字體大小文字溢出處理 */
+
+.scheTitle {
+    font-size: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+/* 查看收藏按鈕位置 */
+
+.btnPosition {
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+}
+
+
+
+/* dialog 刪除提示訊息 */
+
+.deleteMsg {
+    margin: 25px 0px 25px 0px;
+}
+
+.deleteMsg>p {
+    font-size: 24px;
+}
+
+
+/* 我的文章、收藏文章按鈕樣式 */
+
+.btnArtColl {
+    width: 6.25rem;
+    height: 1.875rem;
+    font-size: 1.15rem;
+    color: var(--buttonC);
+    line-height: 100%;
+    margin-right: 25px;
+    margin-bottom: 25px;
+}
+
+
+/* 編輯文章、刪除文章按鈕樣式 */
+
+.btnArticle {
+    width: 6.25rem;
+    height: 1.875rem;
+    color: var(--buttonC);
+    font-size: 15px;
+    line-height: 100%;
+}
+
+
+/* 主色1 */
+
+.bgMainColor {
+    background-color: var(--mainC);
+}
+
+
+/* 配色 */
+
+.bgSecColor {
+    background-color: var(--subCorange);
+}
+
+.bgTextColor {
+    background-color: var(--wordC);
+    color: var(--buttonC);
+}
+
+.bgTextColor:hover {
+    background-color: var(--wordC);
+    color: var(--mainC);
+}
+
+
+/* 每欄文章 */
+
+.dataList {
+    /* border: 2px solid #d2d2d2; */
+    height: 80%;
+    margin-bottom: 25px;
+}
+
+
+/* 每一則文章內容(文字部分) */
+
+.articleInfo {
+    margin: 20px 30px 20px 20px;
+    height: 120px;
+}
+
+
+/* 文章內容標題 */
+
+.articleTitle {
+    color: var(--mainC);
+    font-size: 25px;
+}
+
+
+/* 文字溢出處裡 */
+
+.textOver {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+/* 編輯文章、刪除文章按鍵群組 */
+
+.btnArticleGp {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+
+/* 文章圖片 */
+
+.articleImg {
+    height: 190px;
+    width: 100%;
+    object-fit: cover;
+}
+
+   /* 圖片區域 */
+   .dataArea{
+    height: inherit;
+}
+
+
+/* 修改header 背景色 */
+
+.ui-widget-header {
+    border: 1px solid #aaaaaa;
+    background: #f25041 url("") 50% 50% repeat-x;
+    color: white;
+    font-weight: bold;
+}
+/* 刪除文章dialog */
+#dialog,
+#dialogF {
+    text-align: center;
+}
+/* 刪除文章按鈕 */
+.btn-black15 {
+    background-color: var(--wordC);
+    color: white
+        /* background-color: #151515; */
+}
+/* 刪除文章按鈕 hover效果 */
+.btn-black15:hover {
+    /* background-color: var(--wordC); */
+    color: white;
+    background-color: var(--mainC);
+}

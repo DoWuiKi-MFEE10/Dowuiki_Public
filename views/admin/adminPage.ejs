@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="/stylesheets/member/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/member/memberOrdersPage.css">
+    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/member/loginheader.css">
+    <link rel="stylesheet" href="/stylesheets/navbar.css">
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        :root {
+            --wordC: #151515;
+            --mainC: #f25041;
+            --subCorange: #f2955e;
+            --subCgray: #d2d2d2;
+            --buttonC: #f2f0eb;
+        }
+
+        .nonborder {
+            border: 0px
+        }
+
+        /* 每個資料列的邊框 */
+        .itemList {
+            /* width: 100%; */
+            /* height: 100%; */
+            border: 2px solid var(--mainC);
+            /* margin: 20px 100px 20px 20px; */
+        }
+
+        /* 解除按鈕 */
+        .btnCancelMem {
+            width: 90px;
+            height: 25px;
+            background-color: var(--wordC);
+            color: var(--buttonC);
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            float: right;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            /* margin-top: 10px; */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- navbar範圍 -->
+    <%- include('../navbar.ejs') %>
+    <!-- container -->
+    <div class="container main">
+        <%- include('../dialog_login.ejs') %>
+        <!-- 左邊功能選單 -->
+        <div class="row">
+            <div class="col-3 leftBar p-0">
+                <div class="mry-25">
+                    <div class="btn-group-vertical w-100 leftItemList" role="group"
+                        aria-label="Button group with nested dropdown">
+                        <button type="button" class="btn btn-leftItem">
+                            <a href="/admin" style="text-decoration: none;"><img class="leftBarIcon verticle_center"
+                                    src="/images/U-info-b.svg" alt=""><span
+                                    class="fs-20 verticle_center">文章管理</span></a>
+                        </button>
+                        <button type="button" class="btn btn-leftItem">
+                            <a href="/admin/memberadmin" style="text-decoration: none;"><img
+                                    class="leftBarIcon verticle_center" src="/images/keep-b.svg" alt=""><span
+                                    class="fs-20 verticle_center">會員管理</span></a>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <!-- 資料內容 -->
+            <div class="col-9 p-0">
+                <div class="dataBasic text-center">文章管理</div>
+                <div>
+                    <hr class="hrTagRight mrx-50" />
+                </div>
+                <!-- 文章管理 -->
+                <div class="mrx-50 mry-25" id="articleManage">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <select id="memberFilter" v-model="selectedItem" class="form-control">
+                                    <option v-for="aCity in cityList" :value="aCity">{{aCity.text}}</option>
+                                </select>
+                            </div>
+                            <div class="col-6"><button @click="suspendSelected" class="btn btnDowuiki">選擇封鎖</button>
+                            </div>
+                            <div class="col-2"><button @click="easeSelected" class="btn btnCancelMem">選擇退回</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div>全選不會按照分類{{selected}}</div>
+                    <div>{{accuseArray}}</div> -->
+                    <div class="col-4" style="text-align:left;">
+                        <label class="control-label" for="checkAll">全選</label>
+                        <input type="checkbox" id="checkAll" v-model="selectAll">
+                    </div>
+                    <row-component v-for="articleObj in paginatedData" @select="updateSelect" :selected="selected"
+                        :article-data='articleObj' :key="articleObj.accuse_id">
+                    </row-component>
+
+                    <div class="row d-flex align-items-end">
+                        <div class="col-2"></div>
+                        <div class="col-3"><button class="btn" style="color:#f2f0eb ; background-color:#151515 ;" style="background-color:#151515 ;" :disabled="pageNumber === 0" @click="prePage">&lt;</button></div>
+                        <div class="col-2" style="text-align:center;">{{pageNumber+1}}</div>
+                        <div class="col-3" style="text-align:right;"><button class="btn" style="color:#f2f0eb ; background-color:#151515 ;" :disabled="pageNumber >= pageCount" @click="nextPage">&gt;</button></div>
+                        <div class="col-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height: 200px; background-color: blanchedalmond; border:1px solid black"></div>
+    <script src="/javascripts/member/jquery.js"></script>
+    <script src="/javascripts/member/popper.min.js"></script>
+    <script src="/javascripts/member/bootstrap.min.js"></script>
+    <script src="/javascripts/member/jquery-ui.js"></script>
+    <script src="/javascripts/member/memberOrdersPage.js"></script>
+    <script src="/javascripts/member/logindialog.js"></script>
+    <script src="/javascripts/member/login.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="/stylesheet/member/memberSchedulePage.css">
+
+    <script type="text/x-template" id="rowComponentTemplate">
+
+        <div class="itemList mry-25 p-1">   
+            <div class="col-2 checkItem " >
+                <input type="checkbox"  @click="checkup" v-model="selected"  :value="articleData.article_info_article_id">
+            </div>
+
+            <div class="row">
+                <div class="col-2 text-center p-0" >
+                    <div>檢舉會員 :</div>
+                    <div>檢舉原因 :</div>
+                    <div>檢舉時間 :</div>
+                    <div>文章編號 :</div>
+
+                </div>
+                <div class="col-4 p-0">
+                    <div>{{articleData.user_id}}</div>
+                    <div>{{articleData.reason_detail}}</div>
+                    <div>{{articleData.update_time}}</div>
+                    <div>{{articleData.article_info_article_id}}</div>
+                </div>
+                <div class="col-6  d-flex align-items-end">
+                    <div class="row">
+                        <div class="col-4 "><button @click="suspend" class="btn btnDowuiki">封鎖</button></div>
+                        <div class="col-4"><button @click="ease" class="btn btnCancelMem">退回</button></div>
+                        <div class="col-4"><button @click="moveto" class="btn btnDowuiki">查看</button></div>
+                    </div>
+                    <!-- <div class="row">
+                       
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </script>
+    <script>
+        Vue.component('row-component', {
+            props: ['articleData', 'selected'],
+            template: '#rowComponentTemplate',
+            methods: {
+                suspend: function () {
+                    axios
+                        .put(`/admin/adminPage/changeStatus?status=0&article_id=${this.articleData.article_info_article_id}&accuse_id=${this.articleData.accuse_id}`)
+                        .then(res => (swal({
+                            title: '封鎖成功',
+                            text: 'suspend OK',
+                            type: 'success'
+                        }).then(function () {
+                            window.location.href = "/admin";
+                        })))
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                },
+                // 確認不會有解除，但還是留著(屁拉)
+                ease: function () {
+                    axios
+                        .put(`/admin/adminPage/changeStatus?status=1&article_id=${this.articleData.article_info_article_id}&accuse_id=${this.articleData.accuse_id}`)
+                        .then(res => (swal({
+                            title: '退回成功',
+                            text: 'ease OK',
+                            type: 'success'
+                        }).then(function () {
+                            window.location.href = "/admin";
+                        })))
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                },
+                checkup: function () {
+                    this.$emit('select', this.articleData.article_info_article_id)
+                },
+                moveto: function () {
+                    axios
+                        .get(`/articlePage/blogPage/${this.articleData.article_info_article_id}`)
+                        .then(res => {
+                            // 透過API如果回傳不是空值的話使用分頁開啟該文章內容
+                            if (res.data != "" && res.data != null) {
+                                window.open(`/articlePage/blogPage/${this.articleData.article_info_article_id}`, "_blank")
+                            }
+                            else {
+                                swal({
+                                    title: '連線失敗',
+                                    text: '查無文章',
+                                    type: 'error'
+                                }).then(function () {
+                                    window.location.href = "/admin";
+                                });
+                            }
+                        })
+                }
+            }
+        });
+
+        let vm = new Vue({
+            el: '#articleManage',
+            data: {
+                articleData: null,
+                displayData: null,
+                selected: [],
+                accuseArray: [],
+                selectedItem: { id: 0, text: "全部內容" },
+                cityList: [
+                    { id: 0, text: "全部內容" },
+                    { id: 1, text: "內含令人反感的內容" },
+                    { id: 2, text: "內含暴力和犯罪行為" },
+                    { id: 3, text: "內含垃圾訊息/不實內容" },
+                    { id: 4, text: "惡意洗版" },
+                    { id: 5, text: "其他" }
+                ],
+                pageNumber: 0,
+                size: 3
+            },
+            computed: {
+                selectAll: {
+                    get: function () {
+                        return this.articleData ? this.selected.length === this.articleData.length : false;
+                    },
+                    set: function (value) {
+                        let selected = [];
+                        let accuseArray = [];
+
+                        if (value) {
+                            this.articleData.forEach(function (articleData) {
+                                selected.push(articleData.article_info_article_id);
+                                accuseArray.push(articleData.accuse_id);
+                            });
+                        }
+
+                        this.selected = selected;
+                        this.accuseArray = accuseArray;
+                    }
+                },
+                pageCount() {
+                    let lastPage = this.articleData.length;
+                    let size = this.size;
+                    return Math.floor(lastPage / size);
+                },
+                paginatedData() {
+                    const start = this.pageNumber * this.size,
+                        end = start + this.size;
+                    // alert(this.articleData);
+                    if (this.selectedItem.id != 0) {
+                        this.displayData = this.articleData.filter(article => article.accuse_reason_reason_id == this.selectedItem.id);
+                        return this.displayData
+                            .slice(start, end);
+
+                    } else {
+                        return this.articleData.slice(start, end);
+                    }
+                }
+
+            },
+            methods: {
+                updateSelect(val) {
+                    this.selected.push(val);
+                },
+                updateAccuseArray(val) {
+                    this.accuseArray.push(val);
+                },
+                suspendSelected: function () {
+                    // console.log(this.selected)
+                    axios
+                        .put(`/admin/adminPage/changeAllStatus?status=0&article_id=${JSON.stringify(this.selected)}&accuse_id=${JSON.stringify(this.accuseArray)}`)
+                        .then(res => (swal({
+                            title: '所選封鎖成功',
+                            text: 'Selected suspend OK',
+                            type: 'success'
+                        }).then(function () {
+                            window.location.href = "/admin";
+                        })))
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                },
+                // 確認不會有解除(屁拉)
+                easeSelected: function () {
+                    // console.log(this.selected)
+                    axios
+                        .put(`/admin/adminPage/changeAllStatus?status=1&article_id=${JSON.stringify(this.selected)}&accuse_id=${JSON.stringify(this.accuseArray)}`)
+                        .then(res => (swal({
+                            title: '所選退回成功',
+                            text: 'Selected ease OK',
+                            type: 'success'
+                        }).then(function () {
+                            window.location.href = "/admin";
+                        })))
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                },
+                nextPage() {
+                    this.pageNumber++;
+                },
+                prePage() {
+                    this.pageNumber--;
+                }
+
+            },
+            // Table: accuse_art
+            // (article_info_article_id, user_id, accuse_id, accuse_reason_reason_id, update_time, reason_detail)
+            mounted() {
+                axios
+                    .get('/admin/adminPage/article')
+                    .then(res => (this.articleData = res.data))
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+        });
+    </script>
+    <script>
+        $("#deleOrder").dialog({
+            autoOpen: false,
+            width: 350,
+            height: 250,
+            open: function (event, ui) {
+                //消除左上角close按鈕 
+                $(".ui-dialog-titlebar-close", $(this).parent()).hide();
+            }
+        })
+
+        $(".btnDelete").click(function (event) {
+            $("#deleOrder").dialog("open");
+            event.preventDefault();
+        })
+        // 刪除文章dialog按OK後消失
+        $(".btnOk").click(function () {
+            $("#deleOrder").dialog("close");
+        });
+        // 刪除文章dialog按取消後消失
+        $(".btnCancel").click(function () {
+            $("#deleOrder").dialog("close");
+        });
+        // 刪除文章dialog右上角X 
+        $(".cancelIcon").click(function () {
+            $("#deleOrder").dialog("close");
+        })
+    </script>
+</body>
+
+</html>
